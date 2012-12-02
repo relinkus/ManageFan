@@ -132,7 +132,7 @@ $lang['user_activated_message']                = 'Your account has been activate
 
 
 // Login
-$lang['user_logged_in']                        = 'You have logged in successfully.'; # TODO: Translate this in spanish
+$lang['user_logged_in']                        = 'You have logged in successfully.'; 
 $lang['user_already_logged_in']                = 'You are already logged in. Please logout before trying again.';
 $lang['user_login_incorrect']                  = 'E-mail or password do not match. Please check your login and make sure CAPS LOCK is not on.';
 $lang['user_inactive']                         = 'The account you are trying to access is currently inactive.<br />Check your e-mail for instructions on how to activate your account - <em>it may be in the junk folder</em>.';
