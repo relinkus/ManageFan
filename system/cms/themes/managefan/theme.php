@@ -1,12 +1,12 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Theme_PyroCMS extends Theme {
+class Theme_Managefan extends Theme {
 
-    public $name			= 'PyroCMS - Admin Theme';
-    public $author			= 'PyroCMS Dev Team';
-    public $author_website	= 'http://pyrocms.com/';
-    public $website			= 'http://pyrocms.com/';
-    public $description		= 'PyroCMS admin theme. HTML5 and CSS3 styling.';
+    public $name			= 'ManageFan App - Admin Theme';
+    public $author			= 'ManageFan App Dev Team';
+    public $author_website	= 'http://matrizlab.com/';
+    public $website			= 'http://managefan.com/';
+    public $description		= 'ManageFan App admin theme. HTML5 and CSS3 styling.';
     public $version			= '1.0';
 	public $type			= 'admin';
 	public $options 		= array('pyrocms_recent_comments' => array('title' 		=> 'Recent Comments',

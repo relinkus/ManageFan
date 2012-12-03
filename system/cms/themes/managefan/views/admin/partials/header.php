@@ -1,33 +1,27 @@
-<noscript>
-	<span>MatrizCMS requires that JavaScript be turned on for many of the functions to work correctly. Please turn JavaScript on and reload the page.</span>
-</noscript>
+<!-- Prompt IE 6 users to install Chrome Frame -->
+	<!--[if lt IE 7]><p class="message red-gradient simpler">Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 
-<div class="topbar" dir=<?php $vars = $this->load->_ci_cached_vars; echo $vars['lang']['direction']; ?>>
-	
-	<div class="wrapper">
-		<div id="logo">
-			<?php echo anchor('', $this->settings->site_name, 'target="_blank"'); ?>
-		</div>
-	
-		<nav>
-			<?php file_partial('navigation'); ?>
-		</nav>
-	</div>
-	
-</div>
+	<!-- Title bar -->
+	<header role="banner" id="title-bar">
+		<h2><?php echo $this->settings->site_name; ?></h2>
+	</header>
 
-<div class="subbar">
-	<div class="wrapper">
-		<h2><?php echo $module_details['name'] ? anchor('admin/'.$module_details['slug'], $module_details['name']) : lang('global:dashboard'); ?></h2>
-	
-		<small>
+	<!-- Button to open/hide menu -->
+	<a href="#" id="open-menu"><span>Menu</span></a>
+
+	<!-- Button to open/hide shortcuts -->
+	<a href="#" id="open-shortcuts"><span class="icon-thumbs"></span></a>
+
+	<!-- Main content -->
+	<section role="main" id="main" dir=<?php $vars = $this->load->_ci_cached_vars; echo $vars['lang']['direction']; ?>>
+
+		<noscript class="message black-gradient simpler">Your browser does not support JavaScript! Some features won't work as expected...</noscript>
+
+		<hgroup id="main-title" class="thin">
+			<h1><?php echo $module_details['name'] ? $module_details['name'] : lang('global:dashboard'); ?></h1>
+			<small>
 			<?php if ( $this->uri->segment(2) ) { echo '&nbsp; | &nbsp;'; } ?>
 			<?php echo $module_details['description'] ? $module_details['description'] : ''; ?>
 		</small>
-
-		<?php file_partial('shortcuts'); ?>
-
-	</div>
-</div>
-
-<?php if ( ! empty($module_details['sections'])) file_partial('sections'); ?>
+		</hgroup>
+		

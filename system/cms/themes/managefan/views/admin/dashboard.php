@@ -1,200 +1,402 @@
-<?php if ((isset($analytic_visits) OR isset($analytic_views)) AND $theme_options->pyrocms_analytics_graph == 'yes'): ?>
-<script type="text/javascript">
 
-$(function($) {
-		var visits = <?php echo isset($analytic_visits) ? $analytic_visits : 0; ?>;
-		var views = <?php echo isset($analytic_views) ? $analytic_views : 0; ?>;
+		<div class="dashboard">
 
-		var buildGraph = function() {
-			$.plot($('#analytics'), [{ label: 'Visits', data: visits },{ label: 'Page views', data: views }], {
-				lines: { show: true },
-				points: { show: true },
-				grid: { hoverable: true, backgroundColor: '#fefefe' },
-				series: {
-					lines: { show: true, lineWidth: 1 },
-					shadowSize: 0
-				},
-				xaxis: { mode: "time" },
-				yaxis: { min: 0},
-				selection: { mode: "x" }
-			});
-		}
-		// create the analytics graph when the page loads
-		buildGraph();
+			<div class="columns">
 
-		// re-create the analytics graph on window resize
-		$(window).resize(function(){
-			buildGraph();
-		});
-		
-		function showTooltip(x, y, contents) {
-			$('<div id="tooltip">' + contents + '</div>').css( {
-				position: 'absolute',
-				display: 'none',
-				top: y + 5,
-				left: x + 5,
-				'border-radius': '3px',
-				'-moz-border-radius': '3px',
-				'-webkit-border-radius': '3px',
-				padding: '3px 8px 3px 8px',
-				color: '#ffffff',
-				background: '#000000',
-				opacity: 0.80
-			}).appendTo("body").fadeIn(500);
-		}
-	 
-		var previousPoint = null;
-		
-		$("#analytics").bind("plothover", function (event, pos, item) {
-			$("#x").text(pos.x.toFixed(2));
-			$("#y").text(pos.y.toFixed(2));
-	 
-				if (item) {
-					if (previousPoint != item.dataIndex) {
-						previousPoint = item.dataIndex;
-						
-						$("#tooltip").remove();
-						var x = item.datapoint[0],
-							y = item.datapoint[1];
-						
-						showTooltip(item.pageX, item.pageY,
-									item.series.label + " : " + y);
-					}
-				}
-				else {
-					$("#tooltip").fadeOut(500);
-					previousPoint = null;            
-				}
-		});
-	
-	});
-</script>
+				<div class="nine-columns twelve-columns-mobile" id="demo-chart">
+					<!-- This div will hold the chart generated in the footer -->
+				</div>
 
-<section class="title">
-	<h4>Statistics</h4>
-</section>
-	
-<div id="analyticsWrapper">
-	<div id="analytics"></div>
-</div>
+				<div class="three-columns twelve-columns-mobile new-row-mobile">
+					<ul class="stats split-on-mobile">
+						<li><a href="#">
+							<strong>21</strong> new <br>accounts
+						</a></li>
+						<li><a href="#">
+							<strong>15</strong> referred new <br>accounts
+						</a></li>
+						<li>
+							<strong>5</strong> new <br>items
+						</li>
+						<li>
+							<strong>235</strong> new <br>comments
+						</li>
+					</ul>
+				</div>
 
-<?php endif; ?>
-<!-- End Analytics -->
-	
-<!-- Add an extra div to allow the elements within it to be sortable! -->
-<div id="sortable">
+			</div>
 
-	<!-- Dashboard Widgets -->
-	{{ widgets:area slug="dashboard" }}
+		</div>
 
-	<!-- Begin Recent Comments -->
-	<?php if (isset($recent_comments) AND is_array($recent_comments) AND $theme_options->pyrocms_recent_comments == 'yes') : ?>
-	<div class="one_half">
-		
-		<section class="draggable title">
-			<h4><?php echo lang('comments.recent_comments') ?></h4>
-			<a class="tooltip-s toggle" title="Toggle this element"></a>
-		</section>
-		
-		<section class="item">
-			<ul>
-				<?php if (count($recent_comments)): ?>
-						<?php foreach ($recent_comments AS $rant) : ?>
-							<li>
-								<p><?php echo sprintf(lang('comments.list_comment'), $rant->name, $rant->item); ?> <em><?php echo (Settings::get('comment_markdown') AND $rant->parsed > '') ? strip_tags($rant->parsed) : $rant->comment; ?></em></p>
-							</li>
-						<?php endforeach; ?>
-				<?php else: ?>
-						<?php echo lang('comments.no_comments');?>
-				<?php endif; ?>
-			</ul>
-		</section>
+		<div class="with-padding">
 
-	</div>		
-	<?php endif; ?>
-	<!-- End Recent Comments -->
-	
-	<!-- Begin Quick Links -->
-	<?php if ($theme_options->pyrocms_quick_links == 'yes') : ?>
-	<div class="one_half last">
-		
-		<section class="draggable title">
-			<h4><?php echo lang('cp_admin_quick_links') ?></h4>
-			<a class="tooltip-s toggle" title="Toggle this element"></a>
-		</section>
-		
-		<section id="quick_links" class="item <?php echo isset($rss_items); ?>">
-			<ul>
-				<?php if(array_key_exists('comments', $this->permissions) OR $this->current_user->group == 'admin'): ?>
-				<li>
-					<a class="tooltip-s" title="<?php echo lang('cp_manage_comments') ?>" href="<?php echo site_url('admin/comments') ?>"><?php echo Asset::img('icons/comments.png', lang('cp_manage_comments')); ?></a>
-				</li>
-				<?php endif; ?>
-				
-				<?php if(array_key_exists('pages', $this->permissions) OR $this->current_user->group == 'admin'): ?>
-				<li>
-					<a class="tooltip-s" title="<?php echo lang('cp_manage_pages'); ?>" href="<?php echo site_url('admin/pages') ?>"><?php echo Asset::img('icons/pages.png', lang('cp_manage_pages')); ?></a>
-				</li>
-				<?php endif; ?>
-				
-				<?php if(array_key_exists('files', $this->permissions) OR $this->current_user->group == 'admin'): ?>
-				<li>
-					<a class="tooltip-s" title="<?php echo lang('cp_manage_files'); ?>" href="<?php echo site_url('admin/files') ?>"><?php echo Asset::img('icons/files.png', lang('cp_manage_files')); ?></a>
-				</li>
-				<?php endif; ?>
-				
-				<?php if(array_key_exists('users', $this->permissions) OR $this->current_user->group == 'admin'): ?>
-				<li>
-					<a class="tooltip-s" title="<?php echo lang('cp_manage_users'); ?>" href="<?php echo site_url('admin/users') ?>"><?php echo Asset::img('icons/users.png', lang('cp_manage_users')); ?></a>
-				</li>
-				<?php endif; ?>
-			</ul>
-		</section>
+			<div class="columns">
 
-	</div>		
-	<?php endif; ?>
-	<!-- End Quick Links -->
+				<div class="four-columns six-columns-tablet twelve-columns-mobile">
 
-	<!-- Begin RSS Feed -->
-	<?php if ( isset($rss_items) AND $theme_options->pyrocms_news_feed == 'yes') : ?>
-	<div id="feed" class="one_full">
-		
-		<section class="draggable title">
-			<h4><?php echo lang('cp_news_feed_title'); ?></h4>
-			<a class="tooltip-s toggle" title="Toggle this element"></a>
-		</section>
-		
-		<section class="item">
-			<ul>
-				<?php foreach($rss_items as $rss_item): ?>
-				<li>
-						
-					<?php
-						$item_date	= strtotime($rss_item->get_date());
-						$item_month = date('M', $item_date);
-						$item_day	= date('j', $item_date);
-					?>
-						
-					<div class="date">
-						<span class="month">
-							<?php echo $item_month ?>
+					<h2 class="relative thin">
+						New users
+						<span class="info-spot">
+							<span class="icon-info-round"></span>
+							<span class="info-bubble">
+								This is an information bubble to help the user.
+							</span>
 						</span>
-						<span class="day">
-							<?php echo $item_day; ?>
+						<span class="button-group absolute-right">
+							<a href="javascript:openModal()" title="Add user" class="button icon-plus-round">Add</a>
+							<a href="javascript:openLoadingModal()" title="Reload list" class="button icon-redo"></a>
+						</span>
+					</h2>
+
+					<ul class="list spaced">
+
+						<li>
+							<a href="#" class="list-link icon-user" title="Click to edit">
+								<span class="meter orange-gradient"></span>
+								<span class="meter orange-gradient"></span>
+								<span class="meter"></span>
+								<span class="meter"></span>
+
+								<strong>John</strong> Doe
+							</a>
+							<div class="button-group absolute-right compact show-on-parent-hover">
+								<a href="#" class="button icon-pencil">Edit</a>
+								<a href="#" class="button icon-gear with-tooltip" title="Other actions"></a>
+								<a href="#" class="button icon-trash with-tooltip confirm" title="Delete"></a>
+							</div>
+						</li>
+
+						<li>
+							<a href="#" class="list-link icon-user" title="Click to edit">
+								<span class="meter red-gradient"></span>
+								<span class="meter"></span>
+								<span class="meter"></span>
+								<span class="meter"></span>
+
+								<strong>John</strong> Krazinski
+							</a>
+							<div class="button-group absolute-right compact show-on-parent-hover">
+								<a href="#" class="button icon-pencil">Edit</a>
+								<a href="#" class="button icon-gear with-tooltip" title="Other actions"></a>
+								<a href="#" class="button icon-trash with-tooltip confirm" title="Delete"></a>
+							</div>
+						</li>
+
+						<li>
+							<a href="#" class="list-link icon-user" title="Click to edit">
+								<span class="meter blue-gradient"></span>
+								<span class="meter blue-gradient"></span>
+								<span class="meter blue-gradient"></span>
+								<span class="meter"></span>
+
+								<strong>John</strong>athan Bell
+							</a>
+							<div class="button-group absolute-right compact show-on-parent-hover">
+								<a href="#" class="button icon-pencil">Edit</a>
+								<a href="#" class="button icon-gear with-tooltip" title="Other actions"></a>
+								<a href="#" class="button icon-trash with-tooltip confirm" title="Delete"></a>
+							</div>
+						</li>
+
+						<li>
+							<a href="#" class="list-link icon-user" title="Click to edit">
+								<span class="meter blue-gradient"></span>
+								<span class="meter blue-gradient"></span>
+								<span class="meter blue-gradient"></span>
+								<span class="meter"></span>
+
+								<strong>John</strong> Debogorsky
+							</a>
+							<div class="button-group absolute-right compact show-on-parent-hover">
+								<a href="#" class="button icon-pencil">Edit</a>
+								<a href="#" class="button icon-gear with-tooltip" title="Other actions"></a>
+								<a href="#" class="button icon-trash with-tooltip confirm" title="Delete"></a>
+							</div>
+						</li>
+
+						<li>
+							<a href="#" class="list-link icon-user" title="Click to edit">
+								<span class="meter orange-gradient"></span>
+								<span class="meter orange-gradient"></span>
+								<span class="meter"></span>
+								<span class="meter"></span>
+
+								<strong>John</strong>ny Halliday
+							</a>
+							<div class="button-group absolute-right compact show-on-parent-hover">
+								<a href="#" class="button icon-pencil">Edit</a>
+								<a href="#" class="button icon-gear with-tooltip" title="Other actions"></a>
+								<a href="#" class="button icon-trash with-tooltip confirm" title="Delete"></a>
+							</div>
+						</li>
+
+						<li>
+							<a href="#" class="list-link icon-user" title="Click to edit">
+								<span class="meter green-gradient"></span>
+								<span class="meter green-gradient"></span>
+								<span class="meter green-gradient"></span>
+								<span class="meter green-gradient"></span>
+
+								<strong>John</strong> Hutter
+							</a>
+							<div class="button-group absolute-right compact show-on-parent-hover">
+								<a href="#" class="button icon-pencil">Edit</a>
+								<a href="#" class="button icon-gear with-tooltip" title="Other actions"></a>
+								<a href="#" class="button icon-trash with-tooltip confirm" title="Delete"></a>
+							</div>
+						</li>
+
+						<li>
+							<a href="#" class="list-link icon-user" title="Click to edit">
+								<span class="meter red-gradient"></span>
+								<span class="meter"></span>
+								<span class="meter"></span>
+								<span class="meter"></span>
+
+								<strong>John</strong> Zert
+							</a>
+							<div class="button-group absolute-right compact show-on-parent-hover">
+								<a href="#" class="button icon-pencil">Edit</a>
+								<a href="#" class="button icon-gear with-tooltip" title="Other actions"></a>
+								<a href="#" class="button icon-trash with-tooltip confirm" title="Delete"></a>
+							</div>
+						</li>
+
+					</ul>
+
+				</div>
+
+				<div class="new-row-mobile four-columns six-columns-tablet twelve-columns-mobile">
+
+					<div class="block large-margin-bottom">
+
+						<div class="block-title">
+							<h3>Next events</h3>
+							<span class="ribbon"><span class="ribbon-inner">3 new</span></span>
+						</div>
+
+						<ul class="events">
+
+							<li>
+								<span class="event-date orange">8</span>
+								<a href="#" class="event-description">
+									<h4>Event title</h4>
+									<p>Event description text</p>
+								</a>
+							</li>
+
+							<li>
+								<span class="event-date">15</span>
+								<span class="event-description">
+									<h4>Another event</h4>
+									<p>Other event description text, other event description text</p>
+								</span>
+								<span class="ribbon tiny"><span class="ribbon-inner red-gradient">High</span></span>
+							</li>
+
+							<li>
+								<span class="event-date with-month">
+									8 <span class="event-month">April</span>
+								</span>
+								<h4>Next month event</h4>
+								<p>Another description text</p>
+							</li>
+
+						</ul>
+
+					</div>
+
+					<div class="facts clearfix">
+
+						<div class="fact">
+							<span class="fact-value">
+								50 <span class="fact-unit">Min</span>
+							</span>
+							Average time per session<br>
+							<span class="fact-progress red">-5% ▼</span>
+						</div>
+
+						<div class="fact">
+							<span class="fact-value">
+								25 <span class="fact-unit">%</span>
+							</span>
+							Traffic growth over 30 days<br>
+							<span class="fact-progress green">+7.1% ▲</span>
+						</div>
+
+					</div>
+
+					<div class="button-height wrapped align-right">
+						<span class="float-left mid-margin-left">Want some modals?</span>
+						<span class="button-group">
+							<a href="javascript:openAlert();" class="button">Alert</a>
+							<a href="javascript:openPrompt();" class="button">Prompt</a>
+							<a href="javascript:openConfirm();" class="button">Confirm</a>
 						</span>
 					</div>
-					
-					<h4><?php echo anchor($rss_item->get_permalink(), $rss_item->get_title(), 'target="_blank"'); ?></h4>
-											
-					<p class='item_body'><?php echo $rss_item->get_description(); ?></p>
-				</li>
-				<?php endforeach; ?>
-			</ul>
-		</section>
 
-	</div>		
-	<?php endif; ?>
-	<!-- End RSS Feed -->
+				</div>
+
+				<div class="new-row-tablet four-columns twelve-columns-tablet">
+
+					<div class="block">
+
+						<div class="block-title">
+							<h3 id="agenda-day">Tuesday</h3>
+							<div class="button-group absolute-right compact">
+								<a href="#" class="button" id="agenda-previous"><span class="icon-left-fat"></span></a>
+								<a href="#" class="button" id="agenda-today">Today</a>
+								<a href="#" class="button" id="agenda-next"><span class="icon-right-fat"></span></a>
+							</div>
+						</div>
+
+						<div class="agenda" id="agenda">
+
+							<!-- Time markers -->
+							<ul class="agenda-time">
+								<li class="from-7 to-8"><span>7 AM</span></li>
+								<li class="from-8 to-9"><span>8 AM</span></li>
+								<li class="from-9 to-10"><span>9 AM</span></li>
+								<li class="from-10 to-11"><span>10 AM</span></li>
+								<li class="from-11 to-12"><span>11 AM</span></li>
+								<li class="from-12 to-13 blue"><span>NOON</span></li>
+								<li class="from-13 to-14"><span>1 PM</span></li>
+								<li class="from-14 to-15"><span>2 PM</span></li>
+								<li class="from-15 to-16"><span>3 PM</span></li>
+								<li class="from-16 to-17"><span>4 PM</span></li>
+								<li class="from-17 to-18"><span>5 PM</span></li>
+								<li class="from-18 to-19"><span>6 PM</span></li>
+								<li class="from-19 to-20"><span>7 PM</span></li>
+								<li class="at-20"><span>8 PM</span></li>
+							</ul>
+
+							<!-- Columns wrapper -->
+							<div class="agenda-wrapper">
+
+								<!-- Events list -->
+								<div class="agenda-events agenda-day1">
+
+									<span class="agenda-event anthracite-gradient from-16 to-17-30">
+										<time>4 PM - 5:30 PM</time>
+										Event description
+									</span>
+
+								</div>
+
+								<!-- Events list -->
+								<div class="agenda-events agenda-day2">
+
+									<div class="dark-stripes from-12 to-14"></div>
+
+									<a href="#" class="agenda-event from-8 to-11">
+										<time>8 AM - 11 AM</time>
+										Event description
+									</a>
+
+									<span class="agenda-event from-16-30 to-17-30">
+										<time>4:30 PM - 5:30 PM</time>
+										Event description
+									</span>
+
+								</div>
+
+								<!-- Events list -->
+								<div class="agenda-events agenda-day3">
+
+									<div class="dark-stripes from-12 to-18"></div>
+
+									<a href="#" class="agenda-event from-7 to-9">
+										<time>7 AM - 9 AM</time>
+										Event description
+										<span class="ribbon tiny"><span class="ribbon-inner orange-gradient">Priv</span></span>
+									</a>
+
+									<span class="agenda-event from-10 to-11-30 event-1-on-2">
+										<time>10 AM - 11:30 AM</time>
+										Event description
+									</span>
+
+									<span class="agenda-event from-11 to-13 event-2-on-2 anthracite-gradient">
+										<time>11 AM - 1 PM</time>
+										Event description
+									</span>
+
+									<div class="agenda-now" style="top:63.75%"><span>03:23</span></div>
+
+								</div>
+
+								<!-- Events list -->
+								<div class="agenda-events agenda-day4">
+
+									<div class="dark-stripes from-12 to-14"></div>
+
+									<a href="#" class="agenda-event from-9 to-10">
+										<time>9 AM - 10 AM</time>
+										Event description
+									</a>
+
+									<span class="agenda-event from-16 to-17-30 event-1-on-2">
+										<time>4 PM - 5:30 PM</time>
+										Event description
+									</span>
+
+									<span class="agenda-event from-17 to-19-30 event-2-on-2 blue-gradient">
+										<time>5 PM - 7:30 PM</time>
+										Event description
+									</span>
+
+								</div>
+
+								<!-- Events list -->
+								<div class="agenda-events agenda-day5">
+
+									<div class="dark-stripes from-12 to-14"></div>
+
+									<a href="#" class="agenda-event from-8 to-9">
+										<time>8 AM - 9 AM</time>
+										Event description
+									</a>
+
+									<span class="agenda-event from-11 to-13 anthracite-gradient">
+										<time>11 AM - 1 PM</time>
+										Event description
+									</span>
+
+									<span class="agenda-event from-17 to-19-30 blue-gradient">
+										<time>5 PM - 7:30 PM</time>
+										Event description
+									</span>
+
+								</div>
+
+								<!-- Events list -->
+								<div class="agenda-events agenda-day6">
+
+									<div class="dark-stripes from-12 to-14"></div>
+
+									<span class="agenda-event from-10 to-13 anthracite-gradient">
+										<time>10 AM - 1 PM</time>
+										Event description
+									</span>
+
+									<span class="agenda-event from-16 to-18-30">
+										<time>4 PM - 6:30 PM</time>
+										Event description
+									</span>
+
+								</div>
+
+								<!-- Events list -->
+								<div class="agenda-events agenda-day7"></div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
 
 </div>
-<!-- End sortable div -->

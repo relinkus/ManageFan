@@ -4,12 +4,12 @@
 	
 		// What type of buttons?
 		if(isset($button_type) && $button_type == 'primary'):
-			$btn_class = 'btn';
+			$btn_class = 'button';
 		elseif(isset($button_type) && $button_type == 'secondary'):
 			$btn_class = 'button';
 		else:
 			// Default to primary
-			$btn_class = 'btn';
+			$btn_class = 'button';
 		endif;
 	
 	?>
@@ -25,7 +25,7 @@
 
 		<?php switch ($button) :
 			case 'delete': 
-				if($btn_class == 'btn') $btn_class .= ' red';
+				if($btn_class == 'button') $btn_class .= ' red-gradient glossy';
 			
 			?>
 				<button type="submit" name="btnAction" value="delete" class="<?php echo $btn_class; ?> confirm">
