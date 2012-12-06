@@ -7,10 +7,10 @@
 	</header>
 
 	<!-- Button to open/hide menu -->
-	<a href="#" id="open-menu"><span>Menu</span></a>
+	<a href="<?php echo current_url().'#'; ?>" id="open-menu"><span>Menu</span></a>
 
 	<!-- Button to open/hide shortcuts -->
-	<a href="#" id="open-shortcuts"><span class="icon-thumbs"></span></a>
+	<a href="<?php echo current_url().'#'; ?>" id="open-shortcuts"><span class="icon-thumbs"></span></a>
 
 	<!-- Main content -->
 	<section role="main" id="main" dir=<?php $vars = $this->load->_ci_cached_vars; echo $vars['lang']['direction']; ?>>
