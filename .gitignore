@@ -3,6 +3,7 @@
 .project
 .settings
 .idea
+system/cms/config/database.php
 assets/cache/*
 system/cms/cache/*
 system/cms/logs/log-*.php
