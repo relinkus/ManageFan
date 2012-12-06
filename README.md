@@ -1,5 +1,0 @@
-ManageFan
-=========
-
-ManageFan Development}
-hijh
