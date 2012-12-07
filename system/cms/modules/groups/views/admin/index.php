@@ -66,7 +66,7 @@
 					<?php if ( ! in_array($group->name, array('user', 'admin'))): ?>
 						<?php echo anchor('admin/groups/delete/'.$group->id, lang('buttons.delete'), array('class'=>'button icon-trash with-tooltip confirm', 'title' => lang('global:delete'))); ?>
 					<?php endif; ?>
-					<?php echo anchor('admin/permissions/group/'.$group->id, lang('permissions.edit').'&rarr;', array('class'=>'button icon-gear with-tooltip', 'title' => 'Permissions')); ?>
+					<?php echo anchor('admin/permissions/group/'.$group->id, lang('permissions.edit').'&rarr;', array('class'=>'button icon-gear with-tooltip', 'title' =>  lang('permissions:edit'))); ?>
 						</span>
 					</td>
 				</tr>
