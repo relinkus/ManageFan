@@ -1,48 +1,49 @@
+<div class="with-padding">
+	<div class="columns">
+		<div class="new-row twelve-columns">
 <?php if ($this->method == 'edit'): ?>
-	<section class="title">
-    	<h4><?php echo sprintf(lang('groups.edit_title'), $group->name); ?></h4>
-	</section>
+	
+    	<p class="wrapped left-icon icon-info-round"><?php echo sprintf(lang('groups.edit_title'), $group->name); ?></p>
+	
 <?php else: ?>
-	<section class="title">
-    	<h4><?php echo lang('groups.add_title'); ?></h4>
-	</section>
+	
+    	<p class="wrapped left-icon icon-info-round"><?php echo lang('groups.add_title'); ?></p>
+	
 <?php endif; ?>
-
-<section class="item">
-<?php echo form_open(uri_string(), 'class="crud"'); ?>
-
-<div class="form_inputs">
-
-    <ul>
-		<li>
-			<label for="description"><?php echo lang('groups.name');?> <span>*</span></label>
-			<div class="input"><?php echo form_input('description', $group->description);?></div>
-		</li>
-		
-		<li class="even">
-			<label for="name"><?php echo lang('groups.short_name');?> <span>*</span></label>
-			
-			<div class="input">
-
-			<?php if ( ! in_array($group->name, array('user', 'admin'))): ?>
-			<?php echo form_input('name', $group->name);?>
-
-			<?php else: ?>
-			<p><?php echo $group->name; ?></p>
-			<?php endif; ?>
-			
-			</div>
-		</li>
-    </ul>
-
 </div>
 
-	<div class="buttons float-right padding-top">
+<div class="six-columns twelve-columns-tablet">
+<?php echo form_open(uri_string(), 'class="crud"'); ?>
+
+
+
+		<p class="inline-label button-height">
+			<label for="description" class="label"><?php echo lang('groups.name');?> <span>*</span></label>
+			<?php echo form_input('description', $group->description,  'id="description" class="input"');?>
+		</p>
+		
+		<p class="inline-label button-height">
+			<label for="name" class="label"><?php echo lang('groups.short_name');?> <span>*</span></label>
+			
+
+			<?php if ( ! in_array($group->name, array('user', 'admin'))): ?>
+			<?php echo form_input('name', $group->name,  'id="name" class="input"');?>
+
+			<?php else: ?>
+			<input type="text" id="name" class="input" value="<?php echo $group->name; ?>"></input>
+			<?php endif; ?>
+			
+		</p>
+
+	<div>
 		<?php $this->load->view('admin/partials/buttons', array('buttons' => array('save', 'cancel') )); ?>
 	</div>
 	
 <?php echo form_close();?>
-</section>
+</div>
+
+</div>
+</div>
 
 <script type="text/javascript">
 	jQuery(function($) {

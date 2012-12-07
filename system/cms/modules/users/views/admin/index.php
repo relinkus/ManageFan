@@ -29,7 +29,7 @@
 				unset($shortcut['name']);
 				unset($shortcut['uri']); ?>
 			
-			<a <?php foreach ($shortcut as $attr => $value) echo $attr.'="'.$value.'"'; echo 'href="' . site_url($uri) . '"><span class="button-icon green-gradient"></span>' . lang($name) . '</a>'; ?>
+			<a <?php foreach ($shortcut as $attr => $value) echo $attr.'="button green-gradient"'; echo 'href="' . site_url($uri) . '">' . lang($name) . '</a>'; ?>
 			<?php endforeach; ?>
 			
 		<?php endif; ?>
