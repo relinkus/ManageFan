@@ -111,7 +111,7 @@
 	background: -o-linear-gradient( top, rgba(0,0,0,0.4), rgba(0,0,0,0)), #3c4044 url(../img/textures/grid.png);
 	background: linear-gradient( top, rgba(0,0,0,0.4), rgba(0,0,0,0)), #3c4044 url(../img/textures/grid.png);
 }
-.linen {
+/*.linen {
 	color: white;
 	border-color: #929ba6;
 	background: #a7b2be url(../img/textures/fabric.png);
@@ -121,7 +121,7 @@
 	background: url(../img/textures/fabric.png), -ms-linear-gradient(top, #5d656e, #a7b2be) repeat-x, #a7b2be;
 	background: url(../img/textures/fabric.png), -o-linear-gradient(top, #5d656e, #a7b2be) repeat-x, #a7b2be;
 	background: url(../img/textures/fabric.png), linear-gradient(top, #5d656e, #a7b2be) repeat-x, #a7b2be;
-}
+}*/
 .scratch-metal {
 	border-color: #999999;
 	background: #dedede url(../img/textures/scratches.png);

@@ -19,9 +19,6 @@
 
 		<hgroup id="main-title" class="thin">
 			<h1><?php echo $module_details['name'] ? $module_details['name'] : lang('global:dashboard'); ?></h1>
-			<small>
-			<?php if ( $this->uri->segment(2) ) { echo '&nbsp; | &nbsp;'; } ?>
-			<?php echo $module_details['description'] ? $module_details['description'] : ''; ?>
-		</small>
+		
 		</hgroup>
 		

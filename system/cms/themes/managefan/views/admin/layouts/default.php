@@ -44,8 +44,12 @@
 	<link rel="stylesheet" href="system/cms/themes/managefan/css/styles/modal.css?v=1">
 	<link rel="stylesheet" href="system/cms/themes/managefan/css/styles/progress-slider.css?v=1">
 	<link rel="stylesheet" href="system/cms/themes/managefan/css/styles/switches.css?v=1">
-	
-	<?php echo Asset::render_css() ?>
+	<link rel="stylesheet" href="system/cms/themes/managefan/css/styles/table.css?v=1">
+	<!-- glDatePicker -->
+	<link rel="stylesheet" href="system/cms/themes/managefan/js/libs/glDatePicker/developr.css?v=1">
+
+	<!-- jQuery Form Validation -->
+	<link rel="stylesheet" href="system/cms/themes/managefan/js/libs/formValidator/developr.validationEngine.css?v=1">
 	
 	<!-- Webfonts -->
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
@@ -102,6 +106,11 @@
 	<?php Asset::js('developr.confirm.js'); ?>
 	<?php Asset::js('developr.agenda.js'); ?>	
 	<?php Asset::js('developr.tabs.js'); ?>	<!-- Must be loaded last -->
+	<?php Asset::js('developr.table.js'); ?>
+	
+	<!-- Plugins -->
+	<?php Asset::js('libs/jquery.tablesorter.min.js'); ?>
+	<?php Asset::js('libs/DataTables/jquery.dataTables.min.js'); ?>
 	
 	<!-- Tinycon -->	
 
@@ -427,7 +436,7 @@
 				}
 			});
 		};
-
+		
 	</script>
 	
 

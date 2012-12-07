@@ -11,20 +11,17 @@
 
 <div class="with-padding">
 	<div class="columns">
-	<div class="new-row twelve-columns">
+	<div class="six-columns twelve-columns-tablet">
 	
-	<div class="standard-tabs margin-bottom" id="add-tabs">
+	
 
-		<ul class="tabs">
-			<li class="active"><a href="#user-basic-data-tab"><span><?php echo lang('profile_user_basic_data_label');?></span></a></li>
+		
+			<h3 class="thin underline"><?php echo lang('profile_user_basic_data_label');?></h3>
 			<li><a href="#user-profile-fields-tab"><span><?php echo lang('user_profile_fields_label');?></span></a></li>
-		</ul>
-
-		<!-- Content tab -->
-		<div class="tabs-content">
-			<div class="with-padding" id="user-basic-data-tab">
+		
+			
 						<p class="inline-label button-height">
-							<label for="email" class="label"><?php echo lang('user_email_label');?><span>*</span></label>
+							<label for="email" class="label"><?php echo lang('user_email_label');?></label>
 							<?php echo form_input('email', $member->email, 'id="email" class="input"'); ?>
 						</p>
 						<p class="inline-label button-height">
@@ -47,29 +44,39 @@
 								<?php if ($this->method == 'create'): ?> <span>*</span><?php endif; ?></label>
 							<?php echo form_password('password', '', 'id="password" class="input" autocomplete="off"'); ?>
 						</p>
-				</div>
+				
+		</div>	
+		<div class="six-columns twelve-columns-tablet">
+			<h3 class="thin underline"><?php echo lang('user_profile_fields_label');?></h3>
 			
-			<div class="with-padding" id="user-profile-fields-tab">
-						<p class="inline-label button-height">
-							<label for="display_name" class="label"><?php echo lang('profile_display_name');?><span>*</span></label>
-							<?php echo form_input('display_name', $display_name, 'id="display_name" class="input"'); ?>
-						</p>
-							
+	
+				<fieldset>
+					<ul>
+	
+						<li>
+							<label for="display_name"><?php echo lang('profile_display_name');?> <span>*</span></label>
+							<div class="input">
+							<?php echo form_input('display_name', $display_name, 'id="display_name"'); ?>
+							</div>
+						</li>
+	
 						<?php foreach($profile_fields as $field) { ?>
-						<p class="inline-label button-height">
-							<label for="<?php echo $field['field_slug']; ?>" class="label">
+						<li>
+							<label for="<?php echo $field['field_slug']; ?>">
 								<?php echo (lang($field['field_name'])) ? lang($field['field_name']) : $field['field_name'];  ?>
 								<?php if ($field['required']){ ?> <span>*</span><?php } ?>
 							</label>
-							
+							<div class="input">
 								<?php echo $field['input']; ?>
-				
-						</p>
+							</div>
+						</li>
 						<?php } ?>
 	
-			</div>
-		</div>
-	</div>
+					</ul>
+				</fieldset>
+			
+		
+	
 	</div>
 	</div>
 
