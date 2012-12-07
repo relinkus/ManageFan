@@ -1,48 +1,54 @@
-<section class="title">
-	<h4><?php echo $module_details['name']; ?></h4>
-</section>
+<div class="with-padding">
 
-<section class="item">
 <?php if ($setting_sections): ?>
 	<?php echo form_open('admin/settings/edit', 'class="crud"');?>
 
-		<div class="tabs">
+		<div class="side-tabs same-height">
 
-			<ul class="tab-menu">
+			<ul class="tabs">
 				<?php foreach ($setting_sections as $section_slug => $section_name): ?>
 				<li>
 					<a href="#<?php echo $section_slug; ?>" title="<?php printf(lang('settings_section_title'), $section_name); ?>">
-						<span><?php echo $section_name; ?></span>
+					<?php echo $section_name; ?>
 					</a>
 				</li>
 				<?php endforeach; ?>
 			</ul>
 
 			<?php foreach ($setting_sections as $section_slug => $section_name): ?>
-			<div class="form_inputs" id="<?php echo $section_slug;?>">
-				<fieldset>
-					<ul>
+			<div class="tabs-content" id="<?php echo $section_slug;?>">
+				
+					
+					
 					<?php $section_count = 1; foreach ($settings[$section_slug] as $setting): ?>
-						<li id="<?php echo $setting->slug; ?>" class="<?php echo $section_count++ % 2 == 0 ? 'even' : ''; ?>">
-							<label for="<?php echo $setting->slug; ?>">
+						<div id="<?php echo $setting->slug; ?>" class="<?php echo $section_count++ % 2 == 0 ? 'even' : ''; ?> with-padding">
+							<p class="inline-large-label button-height">
+							<label for="<?php echo $setting->slug; ?>" class="label">
 								<?php echo $setting->title; ?>
-								<?php if($setting->description): echo '<small>'.$setting->description.'</small>'; endif; ?>
+								
 							</label>
-
-							<div class="input <?php echo 'type-' . $setting->type; ?>">
+							
 								<?php echo $setting->form_control; ?>
-							</div>
-							<span class="move-handle"></span>
-						</li>
+							
+							
+							<span class="info-spot">
+							<span class="icon-info-round"></span>
+							<span class="info-bubble">
+								<?php if($setting->description): echo '<small>'.$setting->description.'</small>'; endif; ?>
+							</span>
+						</span>
+						</p>
+							
+						</div>
 					<?php endforeach; ?>
-					</ul>
-				</fieldset>
+					
+				
 			</div>
 			<?php endforeach; ?>
 
 		</div>
 
-		<div class="buttons padding-top">
+		<div>
 			<?php $this->load->view('admin/partials/buttons', array('buttons' => array('save') )); ?>
 		</div>
 
@@ -52,4 +58,4 @@
 		<p><?php echo lang('settings_no_settings');?></p>
 	</div>
 <?php endif; ?>
-</section>
+</div>
