@@ -1,4 +1,6 @@
-
+<div class="with-padding">
+	<div class="columns">
+		<div class="new-row twelve-columns">
 	<?php if ($this->method == 'create'): ?>
 		<p class="wrapped left-icon icon-info-round"><?php echo lang('user_add_title');?></p>
 		<?php echo form_open_multipart(uri_string(), 'class="crud" autocomplete="off"'); ?>
@@ -7,24 +9,13 @@
 		<p class="wrapped left-icon icon-info-round"><?php echo sprintf(lang('user_edit_title'), $member->username);?></p>
 		<?php echo form_open_multipart(uri_string(), 'class="crud"'); ?>
 	<?php endif; ?>
+	</div>
 
+	<div class="six-columns twelve-columns-tablet">
 
-<div class="with-padding">
-	<div class="columns">
-	<div class="new-row twelve-columns">
-	
-	<div class="standard-tabs margin-bottom" id="add-tabs">
-
-		<ul class="tabs">
-			<li class="active"><a href="#user-basic-data-tab"><span><?php echo lang('profile_user_basic_data_label');?></span></a></li>
-			<li><a href="#user-profile-fields-tab"><span><?php echo lang('user_profile_fields_label');?></span></a></li>
-		</ul>
-
-		<!-- Content tab -->
-		<div class="tabs-content">
-			<div class="with-padding" id="user-basic-data-tab">
+				<h3 class="thin underline"><?php echo lang('profile_user_basic_data_label');?></h3>
 						<p class="inline-label button-height">
-							<label for="email" class="label"><?php echo lang('user_email_label');?><span>*</span></label>
+							<label for="email" class="label"><?php echo lang('user_email_label');?></label>
 							<?php echo form_input('email', $member->email, 'id="email" class="input"'); ?>
 						</p>
 						<p class="inline-label button-height">
@@ -47,14 +38,14 @@
 								<?php if ($this->method == 'create'): ?> <span>*</span><?php endif; ?></label>
 							<?php echo form_password('password', '', 'id="password" class="input" autocomplete="off"'); ?>
 						</p>
-				</div>
-			
-			<div class="with-padding" id="user-profile-fields-tab">
+				
+		</div>	
+		<div class="six-columns twelve-columns-tablet">
+			<h3 class="thin underline"><?php echo lang('user_profile_fields_label');?></h3>
 						<p class="inline-label button-height">
 							<label for="display_name" class="label"><?php echo lang('profile_display_name');?><span>*</span></label>
 							<?php echo form_input('display_name', $display_name, 'id="display_name" class="input"'); ?>
 						</p>
-							
 						<?php foreach($profile_fields as $field) { ?>
 						<p class="inline-label button-height">
 							<label for="<?php echo $field['field_slug']; ?>" class="label">
@@ -63,17 +54,18 @@
 							</label>
 							
 								<?php echo $field['input']; ?>
-				
+							
 						</p>
 						<?php } ?>
+						
+						
+						
+						
 	
-			</div>
-		</div>
-	</div>
 	</div>
 	</div>
 
-	<div class="buttons float-right padding-top">
+	<div >
 		<?php $this->load->view('admin/partials/buttons', array('buttons' => array('save', 'cancel') )); ?>
 	</div>
 

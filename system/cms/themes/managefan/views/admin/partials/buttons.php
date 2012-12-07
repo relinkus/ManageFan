@@ -45,14 +45,14 @@
 			case 'save_exit':
 			case 'unapprove':
 			case 'upload': ?>
-				<button type="submit" name="btnAction" value="<?php echo $button ?>" class="<?php echo $btn_class; ?> blue">
+				<button type="submit" name="btnAction" value="<?php echo $button ?>" class="<?php echo $btn_class; ?> green-gradient glossy">
 					<span><?php echo lang('buttons.' . $button); ?></span>
 				</button>
 				<?php break;
 			case 'cancel':
 			case 'close':
 			case 'preview':
-				if($btn_class == 'btn') $btn_class .= ' gray';
+				if($btn_class == 'btn') $btn_class .= ' red-gradient glossy';
 				$uri = 'admin/' . $this->module_details['slug'];
 				$active_section = $this->load->get_var('active_section');
 
@@ -70,7 +70,7 @@
 			 */
 			case 'edit':
 				$id = is_array($extra) && array_key_exists('id', $extra) ? '/' . $button . '/' . $extra['id'] : NULL;
-				if($btn_class == 'btn') $btn_class .= ' gray';
+				if($btn_class == 'btn') $btn_class .= ' gray-gradient glossy';
 
 				echo anchor('admin/' . $this->module_details['slug'] . $id, lang('buttons.' . $button), 'class="'.$btn_class.' ' . $button . '"');
 				break; ?>
