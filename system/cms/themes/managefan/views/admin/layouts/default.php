@@ -478,8 +478,8 @@
 
 			<section class="navigable">
 				
-					<!-- MENU SIDEBAR VERDE-->
-					<?php file_partial('big-menu-users'); ?>
+					<!-- MENU SIDEBAR VERDE
+					<?php file_partial('big-menu-users'); ?>-->
 				
 			</section>
 

@@ -1,24 +1,36 @@
-<section class="title">
-	<h4><?php echo $group->description; ?></h4>
-</section>
-<section class="item">
+<div class="with-padding">
+	<div class="columns">
+	<div class="new-row twelve-columns">
+	<p class="wrapped left-icon icon-info-round">
+	<?php echo $group->description; ?>
+	</p>
+	</div>
+	
+
 <?php echo form_open(uri_string(), array('class'=> 'crud', 'id'=>'edit-permissions',)); ?>
-<table>
+<table class="simple-table responsive-table" id="sorting-example2">
 	<thead>
 		<tr>
-			<th><?php echo form_checkbox(array('id'=>'check-all', 'name' => 'action_to_all', 'class' => 'check-all', 'title' => lang('permissions:checkbox_tooltip_action_to_all'))); ?></th>
-			<th><?php echo lang('permissions:module'); ?></th>
-			<th><?php echo lang('permissions:roles'); ?></th>
+			<th scope="col"><?php echo form_checkbox(array('id'=>'check-all', 'name' => 'action_to_all', 'class' => 'check-all', 'title' => lang('permissions:checkbox_tooltip_action_to_all'))); ?></th>
+			<th scope="col"><?php echo lang('permissions:module'); ?></th>
+			<th scope="col"><?php echo lang('permissions:roles'); ?></th>
 		</tr>
 	</thead>
+	<tfoot>
+			<tr>
+				<td colspan="8">
+					<div class="inner"><?php $this->load->view('admin/partials/pagination'); ?></div>
+				</td>
+			</tr>
+	</tfoot>
 	<tbody>
 		<?php foreach ($permission_modules as $module): ?>
 		<tr>
-			<td style="width: 30px">
+			<td scope="row" class="checkbox-cell">
 				<?php /*sprintf(lang('groups.edit_title'), $group->name)*/
 				echo form_checkbox(array(
 					'id'=> $module['slug'],
-					'class' => 'select-row',
+					'class' => 'checkbox mid-margin-left',
 					'value' => true,
 					'name'=>'modules[' . $module['slug'] . ']',
 					'checked'=> array_key_exists($module['slug'], $edit_permissions),
@@ -26,16 +38,16 @@
 				)); ?>
 			</td>
 			<td>
-				<label class="inline" for="<?php echo $module['slug']; ?>">
+				<label class="label" for="<?php echo $module['slug']; ?>">
 					<?php echo $module['name']; ?>
 				</label>
 			</td>
 			<td>
 			<?php if ( ! empty($module['roles'])): ?>
 				<?php foreach ($module['roles'] as $role): ?>
-				<label class="inline">
+				<label class="label">
 					<?php echo form_checkbox(array(
-						'class' => 'select-rule',
+						'class' => 'checkbox mid-margin-left',
 						'name' => 'module_roles[' . $module['slug'] . ']['.$role.']',
 						'value' => true,
 						'checked' => isset($edit_permissions[$module['slug']]) AND array_key_exists($role, (array) $edit_permissions[$module['slug']])
@@ -49,8 +61,9 @@
 		<?php endforeach; ?>
 	</tbody>
 </table>
-<div class="buttons float-right padding-top">
+<div>
 	<?php $this->load->view('admin/partials/buttons', array('buttons' => array('save', 'save_exit', 'cancel'))); ?>
 </div>
 <?php echo form_close(); ?>
-</section>
+
+</div>
