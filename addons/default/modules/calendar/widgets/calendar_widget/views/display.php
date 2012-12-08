@@ -1,0 +1,1 @@
+<?php echo $this->calendar_lib->public_view($year, $month, $category); ?>
