@@ -1,4 +1,4 @@
-<div class="with-padding">
+<div class="with-padding users">
 	<div class="columns">
 		<div class="new-row twelve-columns">
 	<?php if ($this->method == 'create'): ?>
@@ -46,7 +46,9 @@
 							<label for="display_name" class="label"><?php echo lang('profile_display_name');?><span>*</span></label>
 							<?php echo form_input('display_name', $display_name, 'id="display_name" class="input"'); ?>
 						</p>
+
 						<?php foreach($profile_fields as $field) { ?>
+
 						<p class="inline-label button-height">
 							<label for="<?php echo $field['field_slug']; ?>" class="label">
 								<?php echo (lang($field['field_name'])) ? lang($field['field_name']) : $field['field_name'];  ?>
@@ -66,5 +68,9 @@
 	</div>
 
 <?php echo form_close(); ?>
+
+<script>
+	$(function(){ $(".users input, .users textarea").addClass("input"); $(".users select").addClass("select"); })
+</script>
 
 </div>

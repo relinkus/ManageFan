@@ -189,6 +189,7 @@ class Admin extends Admin_Controller
 		}
 
 		$profile_data['display_name'] = $this->input->post('display_name');
+		$profile_data['class'] = "input";
 
 		if ($this->form_validation->run() !== false)
 		{
