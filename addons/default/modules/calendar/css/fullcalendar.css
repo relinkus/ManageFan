@@ -491,6 +491,8 @@ table.fc-border-separate {
 	text-align: right;
 	white-space: nowrap;
 	font-weight: normal;
+	background: none;
+	border-width: 0 1px 0 0;
 	}
 	
 .fc-agenda .fc-day-content {

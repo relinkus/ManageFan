@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en">
+<head>
+<link rel="stylesheet" href="application/public/css.css" type="text/css" >
+</head>
+<body>
+<center>
+<br />
+<h1>Social login web page</h1>
+<br />
+<?php if( isset( $error_message ) ) echo $error_message; ?>
+<br />
+<br />
+<table width="00%" border="0" cellpadding="2" cellspacing="2">
+  <tr>
+    <td valign="top" align="left">
+
+		<fieldset>
+			&nbsp;&nbsp;<a href="?route=authentications/authenticatewith/google">Sign-in with Google</a><br /> 
+			&nbsp;&nbsp;<a href="?route=authentications/authenticatewith/yahoo">Sign-in with Yahoo</a><br /> 
+			&nbsp;&nbsp;<a href="?route=authentications/authenticatewith/facebook">Sign-in with Facebook</a><br />
+			&nbsp;&nbsp;<a href="?route=authentications/authenticatewith/twitter">Sign-in with Twitter</a><br />  
+			&nbsp;&nbsp;<a href="?route=authentications/authenticatewith/linkedin">Sign-in with LinkedIn</a><br />
+		</fieldset>
+	  </td>
+  </tr>
+</table> 
+</center>
+ 
+</body>
+</html>

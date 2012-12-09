@@ -44,6 +44,7 @@ $(document).ready(function() {
                 aspectRatio: 2,
                 editable: true,
                 allDaySlot: false,
+                defaultView : "agendaWeek",
                 eventSources: [
                     {
                         url: SITE_URL + 'admin/calendar/data_feed/',
